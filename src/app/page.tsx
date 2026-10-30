@@ -16,7 +16,7 @@ export default async function HomePage() {
   const content = await getSiteContent();
 
   return (
-    <main className="min-h-screen bg-vela-black relative selection:bg-vela-red/30">
+    <main className="min-h-screen bg-void text-white selection:bg-cyber-crimson/30 relative overflow-hidden">
       <Header content={content} />
       <Hero content={content} />
       <Services content={content} />

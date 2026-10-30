@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 * {
@@ -19,99 +20,114 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #040407;
+  color: #F8FAFC;
 }
 
 body {
-  background-color: #0A0A0A;
-  color: #F5F5F5;
+  background-color: #040407;
+  color: #F8FAFC;
   font-family: var(--font-inter);
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
-  background: rgba(255, 45, 45, 0.3);
-  color: #F5F5F5;
+  background: rgba(255, 30, 86, 0.35);
+  color: #FFFFFF;
 }
 
-/* Scrollbar */
+/* Scrollbar Minimalista Futurista */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #040407;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2A2A2A;
-  border-radius: 3px;
+  background: #171724;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF2D2D;
+  background: #FF1E56;
 }
 
-/* Grain overlay */
-.grain::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  animation: grain 8s steps(10) infinite;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
+/* Efecte Hologràfic de Vidre */
+.glass-panel {
+  background: rgba(13, 13, 21, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Gradient text utility */
-.text-gradient {
-  background: linear-gradient(135deg, #FF2D2D 0%, #FFB800 100%);
+.glass-panel-glow {
+  background: rgba(17, 17, 28, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 30, 86, 0.2);
+  box-shadow: 0 0 35px rgba(255, 30, 86, 0.08), inset 0 0 20px rgba(255, 30, 86, 0.03);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradients de text futuristes */
+.text-gradient-crimson {
+  background: linear-gradient(135deg, #FFFFFF 20%, #FF1E56 70%, #FFB800 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glow effect */
-.glow-red {
-  box-shadow: 0 0 40px rgba(255, 45, 45, 0.15), 0 0 80px rgba(255, 45, 45, 0.05);
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #FFFFFF 15%, #00F0FF 80%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.glow-gold {
-  box-shadow: 0 0 40px rgba(255, 184, 0, 0.15), 0 0 80px rgba(255, 184, 0, 0.05);
+.text-gradient-silver {
+  background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Glass card */
-.glass {
-  background: rgba(28, 28, 28, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+/* Reixeta Tecnològica */
+.tech-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
-/* Smooth link underline */
-.link-underline {
-  position: relative;
+.tech-grid-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
+
+/* Brillantors Ambientals */
+.glow-orb-crimson {
+  background: radial-gradient(circle, rgba(255, 30, 86, 0.18) 0%, rgba(255, 30, 86, 0) 70%);
+}
+
+.glow-orb-cyan {
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, rgba(0, 240, 255, 0) 70%);
+}
+
+.glow-orb-violet {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%);
+}
+
+/* Línia de Separació Lluminosa */
+.neon-line {
   height: 1px;
-  background: linear-gradient(90deg, #FF2D2D, #FFB800);
-  transition: width 0.3s ease;
-}
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* Section divider */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 45, 45, 0.2), rgba(255, 184, 0, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 30, 86, 0.4), rgba(0, 240, 255, 0.4), transparent);
 }
 
 @layer utilities {

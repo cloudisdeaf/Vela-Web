@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { SiteContent } from '@/lib/types';
 
 interface ServicesProps {
@@ -9,41 +10,49 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ content }) => {
   return (
-    <section id="serveis" className="py-24 sm:py-32 relative">
+    <section id="serveis" className="py-28 sm:py-36 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ENCAPÇALAMENT DE SECCIÓ */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <span className="text-xs font-bold uppercase tracking-widest text-vela-red inline-block mb-3">
-            CATÀLEG D&apos;ENGINYERIA DIGITAL
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
-            Solucions digitals sense compromisos tècnics
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-vela-text">
-            Construïm actius digitals que eleven la percepció de la teva marca i generen facturació previsible.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20">
+          <div className="max-w-2xl">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyber-cyan inline-block mb-3">
+              SERVEIS PRINCIPALS D&apos;ENGINYERIA
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
+              Solucions digitals sense limitacions tècniques
+            </h2>
+          </div>
+          <Link
+            href="/serveis"
+            className="mt-4 md:mt-0 text-xs sm:text-sm font-mono text-cyber-crimson hover:text-white transition-colors flex items-center gap-1.5 font-bold"
+          >
+            <span>Veure catàleg complet & detalls</span>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
         </div>
 
         {/* GRAELLA DE SERVEIS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {content.services.map((service) => (
             <div
               key={service.id}
-              className={`relative rounded-2xl p-8 sm:p-10 transition-all duration-300 flex flex-col justify-between ${
+              className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-300 flex flex-col justify-between glass-panel group hover:border-white/20 ${
                 service.popular
-                  ? 'bg-gradient-to-b from-vela-card to-vela-dark border-2 border-vela-gold/40 shadow-[0_0_40px_rgba(255,184,0,0.12)]'
-                  : 'bg-vela-surface/70 border border-white/[0.08] hover:border-white/20'
+                  ? 'border-cyber-crimson/40 shadow-[0_0_40px_rgba(255,30,86,0.12)]'
+                  : ''
               }`}
             >
               {service.popular && (
-                <div className="absolute -top-3.5 right-8 px-3.5 py-1 rounded-full bg-gradient-to-r from-vela-gold to-yellow-400 text-black text-xs font-bold uppercase tracking-wider shadow-md">
-                  Recomanat per a empreses
+                <div className="absolute -top-3 right-8 px-3.5 py-1 rounded-full bg-gradient-to-r from-cyber-crimson to-cyber-amber text-white text-[10px] font-mono font-bold uppercase tracking-wider shadow-md">
+                  SOLUCIÓ RECOMANADA
                 </div>
               )}
 
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-vela-card border border-white/10 flex items-center justify-center text-vela-gold">
+                  <div className="w-12 h-12 rounded-2xl bg-space-800 border border-white/10 flex items-center justify-center text-cyber-cyan group-hover:scale-105 transition-transform">
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
@@ -58,48 +67,54 @@ export const Services: React.FC<ServicesProps> = ({ content }) => {
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-2 font-display">{service.title}</h3>
-                <p className="text-xs uppercase font-semibold tracking-wider text-vela-gold mb-4">
+                <h3 className="text-2xl font-bold text-white mb-1.5 font-display group-hover:text-cyber-cyan transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-xs font-mono uppercase tracking-wider text-cyber-amber mb-4">
                   {service.tagline}
                 </p>
-                <p className="text-sm sm:text-base text-vela-text leading-relaxed mb-8">
+                <p className="text-sm text-titanium-400 leading-relaxed mb-8">
                   {service.description}
                 </p>
 
                 {/* CARACTERÍSTIQUES TÈCNIQUES */}
-                <div className="space-y-3 pt-6 border-t border-white/[0.08] mb-8">
+                <div className="space-y-3 pt-6 border-t border-white/[0.06] mb-8">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
+                    <div key={idx} className="flex items-start gap-2.5">
                       <svg
-                        className="w-5 h-5 text-vela-gold flex-shrink-0 mt-0.5"
+                        className="w-4 h-4 text-cyber-cyan flex-shrink-0 mt-0.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm text-vela-light font-normal">{feature}</span>
+                      <span className="text-xs sm:text-sm text-titanium-300 font-normal">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <a
-                href="#contacte"
-                className={`w-full py-3.5 rounded-xl text-sm font-bold text-center transition-all block ${
-                  service.popular
-                    ? 'bg-gradient-to-r from-vela-gold to-amber-400 text-black hover:brightness-110 shadow-lg'
-                    : 'bg-vela-card hover:bg-white/[0.08] text-white border border-white/10'
-                }`}
-              >
-                Demanar Informació per a aquest Servei
-              </a>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/contacte"
+                  className={`flex-1 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-center transition-all block ${
+                    service.popular
+                      ? 'bg-gradient-to-r from-cyber-crimson via-cyber-coral to-cyber-amber text-white hover:brightness-110 shadow-lg'
+                      : 'bg-space-800 hover:bg-space-700 text-white border border-white/10'
+                  }`}
+                >
+                  Demanar Proposta
+                </Link>
+                <Link
+                  href="/serveis"
+                  className="px-4 py-3.5 rounded-xl text-xs font-mono text-titanium-400 hover:text-white glass-pill"
+                >
+                  Detalls →
+                </Link>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-12 text-center text-xs sm:text-sm text-vela-muted max-w-2xl mx-auto">
-          {content.pricingNote}
         </div>
       </div>
     </section>
