@@ -1,8 +1,31 @@
 import { NextResponse } from 'next/server';
 import { getSiteContent, saveSiteContent } from '@/lib/storage';
 import { SiteContent } from '@/lib/types';
+import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || 'vela2026admin';
+const DATA_DIR = path.join(process.cwd(), 'data');
+const AUTH_FILE = path.join(DATA_DIR, '.auth-config.json');
+
+function hashPassword(password: string): string {
+  return crypto.createHash('sha256').update(password.trim()).digest('hex');
+}
+
+function getCurrentPasswordHash(): string {
+  if (process.env.ADMIN_SECRET_KEY) {
+    return hashPassword(process.env.ADMIN_SECRET_KEY);
+  }
+  try {
+    if (fs.existsSync(AUTH_FILE)) {
+      const data = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf-8'));
+      if (data && data.hash) return data.hash;
+    }
+  } catch {
+    // Silent fallback
+  }
+  return hashPassword('vela2026admin');
+}
 
 export async function GET() {
   try {
@@ -19,8 +42,15 @@ export async function POST(request: Request) {
     const authHeader = request.headers.get('authorization') || '';
     const token = authHeader.replace(/^Bearer\s+/i, '');
 
-    if (token !== ADMIN_SECRET) {
-      return NextResponse.json({ error: 'Accés no autoritzat. Clau d\'administrador invàlida.' }, { status: 401 });
+    if (!token) {
+      return NextResponse.json({ error: 'Accés no autoritzat. Token requerit.' }, { status: 401 });
+    }
+
+    const currentHash = getCurrentPasswordHash();
+    const tokenHash = hashPassword(token);
+
+    if (!crypto.timingSafeEqual(Buffer.from(tokenHash), Buffer.from(currentHash))) {
+      return NextResponse.json({ error: 'Accés denegat. Clau invàlida o expirada.' }, { status: 401 });
     }
 
     const body = (await request.json()) as SiteContent;

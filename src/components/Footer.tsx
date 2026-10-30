@@ -14,12 +14,12 @@ export const Footer: React.FC<FooterProps> = ({ content }) => {
     <footer className="border-t border-white/[0.06] bg-noir-950 py-20 relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-white/[0.06]">
-          {/* IDENTITAT */}
+          {/* IDENTITAT CORPORATIVA */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-7 h-7 rounded-lg overflow-hidden bg-noir-850 border border-white/10 flex-shrink-0">
+              <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-noir-850 border border-white/10 flex-shrink-0">
                 {content.brand.logoUrl ? (
-                  <Image src={content.brand.logoUrl} alt="VELA" fill className="object-cover" />
+                  <Image src={content.brand.logoUrl} alt="VELA" fill className="object-contain p-0.5" />
                 ) : (
                   <div className="w-full h-full bg-ferrari-red text-white font-bold flex items-center justify-center text-xs">
                     V*
@@ -31,29 +31,29 @@ export const Footer: React.FC<FooterProps> = ({ content }) => {
               </span>
             </div>
             <p className="text-xs text-apple-muted leading-relaxed">
-              {content.brand.subTagline}. Construïm plataformes que projecten autoritat indiscutible.
+              {content.brand.subTagline}. Desenvolupem plataformes d&apos;enginyeria que projecten lideratge i autoritat absoluta.
             </p>
             <div className="text-[11px] font-mono text-apple-dark">
               MANRESA, BARCELONA · CATALUNYA
             </div>
           </div>
 
-          {/* NAVEGACIÓ */}
+          {/* NAVEGACIÓ D'ENGINYERIA */}
           <div>
             <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white mb-4">
               Navegació
             </h4>
             <ul className="space-y-2.5 text-xs text-apple-muted">
               <li><Link href="/" className="hover:text-white transition-colors">Inici</Link></li>
-              <li><Link href="/serveis" className="hover:text-white transition-colors">Serveis</Link></li>
-              <li><Link href="/projectes" className="hover:text-white transition-colors">Projectes</Link></li>
+              <li><Link href="/serveis" className="hover:text-white transition-colors">Serveis & Tarifes</Link></li>
+              <li><Link href="/projectes" className="hover:text-white transition-colors">Projectes Destacats</Link></li>
               <li><Link href="/seguretat" className="hover:text-white transition-colors">Seguretat & NDA</Link></li>
-              <li><Link href="/nosaltres" className="hover:text-white transition-colors">L&apos;Estudi</Link></li>
-              <li><Link href="/contacte" className="hover:text-white transition-colors">Contacte</Link></li>
+              <li><Link href="/nosaltres" className="hover:text-white transition-colors">L&apos;Estudi & Manifest</Link></li>
+              <li><Link href="/contacte" className="hover:text-white transition-colors">Contacte Confidencial</Link></li>
             </ul>
           </div>
 
-          {/* LEGAL */}
+          {/* COMPLIMENT LEGAL & RGPD */}
           <div>
             <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white mb-4">
               Legal & Privacitat
@@ -62,26 +62,40 @@ export const Footer: React.FC<FooterProps> = ({ content }) => {
               <li><Link href="/politica-privacidad" className="hover:text-white transition-colors">Política de Privacitat</Link></li>
               <li><Link href="/terminos" className="hover:text-white transition-colors">Termes de Contractació</Link></li>
               <li><Link href="/seguretat" className="hover:text-white transition-colors">Sobirania de Codi</Link></li>
+              <li><Link href="/seguretat" className="hover:text-white transition-colors">Normativa RGPD UE</Link></li>
             </ul>
           </div>
 
-          {/* ACCÉS PRIVAT CMS */}
+          {/* SEU CENTRAL & ATENCIÓ */}
           <div>
             <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white mb-4">
-              Panell de Control
+              Estudi a Manresa
             </h4>
-            <p className="text-xs text-apple-muted mb-4">
-              Editor visual integrat per modificar continguts, preus i logo en viu.
-            </p>
-            <Link
-              href="/admin"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs text-white transition-all"
-            >
-              <svg className="w-3.5 h-3.5 text-ferrari-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span>Accés CMS Studio</span>
-            </Link>
+            <div className="space-y-3 text-xs text-apple-muted">
+              <p className="leading-relaxed">
+                Passeig de Pere III, Manresa (Barcelona)
+              </p>
+              <div className="flex items-center gap-2 pt-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className="text-[11px] font-mono text-apple-silver">Disponibilitat Q4 Oberta</span>
+              </div>
+              <div className="pt-2">
+                <a
+                  href={`mailto:${content.brand.email}`}
+                  className="text-white hover:text-ferrari-red transition-colors font-medium block"
+                >
+                  {content.brand.email}
+                </a>
+                <a
+                  href={content.brand.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-apple-silver hover:text-ferrari-red transition-colors text-[11px] font-mono mt-1 block"
+                >
+                  {content.brand.instagramHandle}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -90,11 +104,9 @@ export const Footer: React.FC<FooterProps> = ({ content }) => {
             © {new Date().getFullYear()} {content.brand.name}. Tots els drets reservats.
           </div>
           <div className="flex items-center gap-6">
+            <span className="text-apple-muted">Manresa, Bages · Catalunya</span>
             <a href={`mailto:${content.brand.email}`} className="hover:text-white transition-colors">
               {content.brand.email}
-            </a>
-            <a href={content.brand.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-ferrari-red transition-colors">
-              {content.brand.instagramHandle}
             </a>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
+import { CockpitBenchmark } from '@/components/CockpitBenchmark';
 import { SecurityGuarantee } from '@/components/SecurityGuarantee';
 import { WhyUs } from '@/components/WhyUs';
 import { Portfolio } from '@/components/Portfolio';
@@ -20,6 +21,7 @@ export default async function HomePage() {
       <Header content={content} />
       <Hero content={content} />
       <Services content={content} />
+      <CockpitBenchmark />
       <SecurityGuarantee content={content} />
       <WhyUs content={content} />
       <Portfolio content={content} />
