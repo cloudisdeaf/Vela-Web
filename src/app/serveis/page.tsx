@@ -1,167 +1,229 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Metadata } from 'next';
-import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { defaultSiteContent } from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'Serveis d\'Enginyeria Digital & Tarifes · VELA Manresa',
-  description:
-    'Desenvolupament web d\'autor en Next.js, automatització de WhatsApp amb IA, SEO local i ciberseguretat per a empreses del Bages.',
-};
+export default function ServeisPage() {
+  const content = defaultSiteContent;
 
-export default async function ServeisPage() {
-  const content = await getSiteContent();
+  // Configurador interactiu d'inversió
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([
+    'web',
+  ]);
 
-  const techStack = [
-    { name: 'Next.js 14', category: 'Framework Líder' },
-    { name: 'TypeScript', category: 'Seguretat de Tipus' },
-    { name: 'Tailwind CSS', category: 'Disseny d\'Alta Freqüència' },
-    { name: 'Framer Motion', category: 'Animació Awwwards' },
-    { name: 'Supabase', category: 'Base de Dades Núvol' },
-    { name: 'Cloudflare Edge', category: 'Protecció DDoS Global' },
-    { name: 'OpenAI API', category: 'Intel·ligència Artificial' },
-    { name: 'Vercel Enterprise', category: 'Infraestructura Serverless' },
-  ];
+  const toggleFeature = (id: string) => {
+    if (selectedFeatures.includes(id)) {
+      if (selectedFeatures.length > 1) {
+        setSelectedFeatures(selectedFeatures.filter((f) => f !== id));
+      }
+    } else {
+      setSelectedFeatures([...selectedFeatures, id]);
+    }
+  };
+
+  const calculateEstimate = () => {
+    let total = 0;
+    if (selectedFeatures.includes('web')) total += 890;
+    if (selectedFeatures.includes('bot')) total += 450;
+    if (selectedFeatures.includes('seo')) total += 250;
+    if (selectedFeatures.includes('social')) total += 350;
+    return total;
+  };
 
   return (
-    <main className="min-h-screen bg-void text-white selection:bg-cyber-crimson/30">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
       <Header content={content} />
 
-      {/* HERO DE PÀGINA */}
-      <section className="pt-36 sm:pt-44 pb-20 relative tech-grid overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] glow-orb-crimson rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-space-800 border border-white/10 text-cyber-cyan text-xs font-mono uppercase tracking-widest mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
-            CATÀLEG DE SOLUCIONS D&apos;ENGINYERIA 2026
+      {/* HERO DE SERVEIS */}
+      <section className="pt-40 sm:pt-48 pb-20 relative spotlight-red text-center">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red"></span>
+            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+              DISCIPLINES D&apos;ENGINYERIA · TARIFA TRANSPARENT
+            </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight max-w-4xl mx-auto leading-[1.1]">
-            Arquitectura digital dissenyada per a{' '}
-            <span className="text-gradient-crimson">multiplicar facturació</span>.
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+            Rigor tècnic.{' '}
+            <span className="text-apple-muted block sm:inline">Sense soroll.</span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-xl text-titanium-400 max-w-2xl mx-auto leading-relaxed">
-            Eliminem la lentitud i la mediocritat de les plantilles tradicionals. Construïm plataformes que posicionen el teu negoci a la cúspide del seu mercat.
+          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
+            Desenvolupem arquitectures digitals pensades exclusivament per a empreses que necessiten projectar lideratge i autoritat absoluta.
           </p>
         </div>
       </section>
 
-      {/* DETALL PROFUND DELS SERVEIS */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* CATÀLEG EDITORIAL DELS 4 SERVEIS */}
+      <section className="py-24 border-t border-white/[0.06] bg-noir-950">
+        <div className="max-w-6xl mx-auto px-6 lg:px-12 space-y-12">
           {content.services.map((service, index) => (
             <div
               key={service.id}
-              className={`p-8 sm:p-12 rounded-3xl glass-panel relative overflow-hidden transition-all duration-300 hover:border-white/20 ${
-                service.popular ? 'border-cyber-crimson/30 shadow-[0_0_50px_rgba(255,30,86,0.1)]' : ''
-              }`}
+              className="luxury-card rounded-3xl p-10 sm:p-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-cyber-cyan tracking-widest uppercase">
-                      SERVEI 0{index + 1}
+              <div className="lg:col-span-8 space-y-6">
+                <div className="flex items-center gap-4">
+                  <span className="text-xs font-mono text-apple-muted tracking-widest uppercase">
+                    0{index + 1}
+                  </span>
+                  {service.popular && (
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase bg-ferrari-red/15 text-ferrari-red border border-ferrari-red/30">
+                      ESTÀNDARD CORPORATIU
                     </span>
-                    {service.popular && (
-                      <span className="px-3 py-0.5 rounded-full bg-cyber-crimson/20 border border-cyber-crimson/40 text-[11px] font-bold text-cyber-crimson uppercase">
-                        Solució Recomanada
-                      </span>
-                    )}
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white">
-                    {service.title}
-                  </h2>
-
-                  <p className="text-sm font-mono text-cyber-amber uppercase tracking-wider">
-                    {service.tagline}
-                  </p>
-
-                  <p className="text-base text-titanium-300 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/[0.08]">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-titanium-200">
-                        <svg className="w-4 h-4 text-cyber-cyan flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+                  )}
                 </div>
 
-                <div className="lg:col-span-5 flex flex-col justify-center items-start lg:items-end p-6 rounded-2xl bg-space-800/80 border border-white/[0.06]">
-                  <span className="text-xs font-mono text-titanium-400 uppercase tracking-widest mb-1">
-                    Inversió Estimada
+                <h2 className="text-3xl sm:text-4xl font-bold font-display text-white">
+                  {service.title}
+                </h2>
+
+                <p className="text-xs font-mono text-apple-muted uppercase tracking-wider">
+                  {service.tagline}
+                </p>
+
+                <p className="text-sm sm:text-base text-apple-muted leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-white/[0.06]">
+                  {service.features.map((feat, i) => (
+                    <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-apple-silver">
+                      <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red flex-shrink-0"></span>
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 p-8 rounded-2xl bg-noir-900 border border-white/[0.06] flex flex-col justify-between space-y-6">
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-apple-muted block mb-1">
+                    Preu Tancat per Contracte
                   </span>
-                  <div className="text-3xl sm:text-4xl font-black font-display text-white mb-4">
+                  <div className="text-3xl font-bold font-display text-white">
                     {service.price}
                   </div>
-                  <p className="text-xs text-titanium-400 mb-6 text-left lg:text-right max-w-xs">
-                    Pressupost tancat per contracte amb compromís de lliurament garantit per escrit.
+                  <p className="text-xs text-apple-muted mt-2">
+                    Lliurament garantit per escrit amb acord de confidencialitat (NDA).
                   </p>
-
-                  <Link
-                    href={`/contacte?servei=${encodeURIComponent(service.title)}`}
-                    className="w-full py-3.5 px-6 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyber-crimson to-cyber-amber hover:brightness-110 active:scale-95 transition-all shadow-lg"
-                  >
-                    Demanar Proposta per a aquest Servei
-                  </Link>
                 </div>
+
+                <Link
+                  href={`/contacte?servei=${encodeURIComponent(service.title)}`}
+                  className="w-full py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-center text-white bg-ferrari-red hover:bg-ferrari-dark transition-all duration-200 block shadow-[0_0_20px_rgba(225,6,0,0.25)]"
+                >
+                  Demanar Proposta
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* TECH STACK REIXETA */}
-      <section className="py-20 bg-space-900/60 border-y border-white/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-mono text-cyber-cyan uppercase tracking-widest block mb-3">
-            ARQUITECTURA DE NIVELL EMPRESARIAL
-          </span>
-          <h3 className="text-2xl sm:text-4xl font-black font-display text-white mb-12">
-            Les mateixes tecnologies que utilitzen Apple, Stripe i Ferrari
-          </h3>
+      {/* ESTIMADOR INTERACTIU DE PROJECTE ESTIL FERRARI CONFIGURATOR */}
+      <section className="py-28 border-t border-white/[0.06] bg-noir-900">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-semibold">
+              CONFIGURADOR D&apos;ARQUITECTURA
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
+              Configura el teu pla digital.
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-apple-muted">
+              Selecciona els components que requereix el teu negoci per obtenir una estimació d&apos;inversió immediata.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {techStack.map((tech, i) => (
-              <div key={i} className="p-5 rounded-2xl bg-space-800/60 border border-white/[0.06] text-left">
-                <span className="text-[10px] font-mono text-titanium-400 uppercase tracking-wider block mb-1">
-                  {tech.category}
+          <div className="luxury-card rounded-3xl p-8 sm:p-12 space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => toggleFeature('web')}
+                className={`p-6 rounded-2xl text-left border transition-all ${
+                  selectedFeatures.includes('web')
+                    ? 'bg-noir-850 border-ferrari-red shadow-[0_0_20px_rgba(225,6,0,0.15)]'
+                    : 'bg-noir-900 border-white/[0.06] hover:border-white/20'
+                }`}
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-bold text-white font-display">Plataforma Web d&apos;Autor</span>
+                  <span className="text-xs font-mono text-apple-silver">890 €</span>
+                </div>
+                <p className="text-xs text-apple-muted">Next.js 14, codi a mida, velocitat &lt; 1s i SEO integrat.</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleFeature('bot')}
+                className={`p-6 rounded-2xl text-left border transition-all ${
+                  selectedFeatures.includes('bot')
+                    ? 'bg-noir-850 border-ferrari-red shadow-[0_0_20px_rgba(225,6,0,0.15)]'
+                    : 'bg-noir-900 border-white/[0.06] hover:border-white/20'
+                }`}
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-bold text-white font-display">Automatització WhatsApp</span>
+                  <span className="text-xs font-mono text-apple-silver">450 €</span>
+                </div>
+                <p className="text-xs text-apple-muted">Atenció 24/7/365, tancament de cites i integració CRM.</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleFeature('seo')}
+                className={`p-6 rounded-2xl text-left border transition-all ${
+                  selectedFeatures.includes('seo')
+                    ? 'bg-noir-850 border-ferrari-red shadow-[0_0_20px_rgba(225,6,0,0.15)]'
+                    : 'bg-noir-900 border-white/[0.06] hover:border-white/20'
+                }`}
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-bold text-white font-display">Domini Local Google & SEO</span>
+                  <span className="text-xs font-mono text-apple-silver">250 €</span>
+                </div>
+                <p className="text-xs text-apple-muted">Fitxa Google Business optimitzada i posicionament a Manresa.</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleFeature('social')}
+                className={`p-6 rounded-2xl text-left border transition-all ${
+                  selectedFeatures.includes('social')
+                    ? 'bg-noir-850 border-ferrari-red shadow-[0_0_20px_rgba(225,6,0,0.15)]'
+                    : 'bg-noir-900 border-white/[0.06] hover:border-white/20'
+                }`}
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-bold text-white font-display">Direcció d&apos;Imatge & Xarxes</span>
+                  <span className="text-xs font-mono text-apple-silver">350 €/mes</span>
+                </div>
+                <p className="text-xs text-apple-muted">Contingut cinematogràfic d&apos;alta conversió per a xarxes.</p>
+              </button>
+            </div>
+
+            <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <span className="text-xs font-mono text-apple-muted uppercase tracking-widest block">
+                  Inversió Total Estimada
                 </span>
-                <span className="text-base font-bold text-white font-display">
-                  {tech.name}
+                <span className="text-4xl font-black text-white font-display">
+                  {calculateEstimate()} €
                 </span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* CTA INFERIOR */}
-      <section className="py-24 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <h2 className="text-3xl sm:text-5xl font-black font-display text-white">
-            Preparat per fer un salt d&apos;autoritat al teu sector?
-          </h2>
-          <p className="text-base text-titanium-400">
-            Analitzem el teu cas concret sense cap cost ni compromís.
-          </p>
-          <div className="pt-4">
-            <Link
-              href="/contacte"
-              className="inline-block px-8 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-cyber-amber via-yellow-400 to-amber-300 hover:brightness-110 active:scale-95 transition-all shadow-xl"
-            >
-              Agendar Auditoria Digital Gratuïta
-            </Link>
+              <Link
+                href="/contacte"
+                className="w-full sm:w-auto px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-ferrari-red hover:bg-ferrari-dark transition-all duration-200 text-center shadow-[0_0_25px_rgba(225,6,0,0.3)]"
+              >
+                Bloquejar aquest Pressupost
+              </Link>
+            </div>
           </div>
         </div>
       </section>

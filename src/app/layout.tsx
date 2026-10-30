@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'VELA* · Agència de Desenvolupament Web & Arquitectura Digital d\'Alta Gamma · Manresa',
   description:
-    'Dissenyem plataformes web d\'autor, arquitectures d\'alta velocitat i automatitzacions intel·ligents per a empreses líders a Manresa i Catalunya. Codi blindat, disseny Awwwards i garantia de resultats.',
+    'Dissenyem plataformes web d\'autor, arquitectures d\'alta velocitat i automatitzacions intel·ligents per a empreses líders a Manresa i Catalunya. Codi blindat, disseny estil Apple/Ferrari i garantia de resultats.',
   keywords: [
     'disseny web manresa',
     'agència digital manresa',
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/logo.png',
-        width: 1200,
-        height: 1200,
+        width: 1024,
+        height: 1024,
         alt: 'VELA Manresa Logo',
       },
     ],
@@ -50,10 +50,41 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0A0A0A',
+  themeColor: '#000000',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'VELA* Manresa',
+  image: 'https://velabages.es/logo.png',
+  '@id': 'https://velabages.es',
+  url: 'https://velabages.es',
+  telephone: '+34600000000',
+  priceRange: '€€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Passeig de Pere III',
+    addressLocality: 'Manresa',
+    addressRegion: 'Barcelona',
+    postalCode: '08241',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 41.7282,
+    longitude: 1.8288,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '19:00',
+  },
+  sameAs: ['https://instagram.com/velamanresa'],
 };
 
 export default function RootLayout({
@@ -63,7 +94,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ca" className="scroll-smooth">
-      <body className="bg-vela-black text-vela-white selection:bg-vela-red/30 selection:text-white grain antialiased">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="bg-noir-950 text-apple-white selection:bg-ferrari-red/40 selection:text-white antialiased">
         {children}
       </body>
     </html>

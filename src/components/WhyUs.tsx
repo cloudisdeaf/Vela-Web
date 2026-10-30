@@ -10,25 +10,23 @@ interface WhyUsProps {
 
 export const WhyUs: React.FC<WhyUsProps> = ({ content }) => {
   return (
-    <section id="per-que-nosaltres" className="py-28 sm:py-36 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20">
+    <section id="per-que-nosaltres" className="py-32 sm:py-40 bg-noir-900 border-t border-white/[0.06] relative">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 sm:mb-28">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyber-amber inline-block mb-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-semibold">
               AVANTATGE COMPETITIU
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
-              Per què triar VELA i no una agència convencional
+            <h2 className="text-4xl sm:text-6xl font-black text-white font-display text-apple-headline">
+              Per què triar VELA.
             </h2>
           </div>
           <Link
             href="/nosaltres"
-            className="mt-4 md:mt-0 text-xs sm:text-sm font-mono text-cyber-cyan hover:text-white transition-colors flex items-center gap-1.5 font-bold"
+            className="mt-6 md:mt-0 text-xs sm:text-sm font-mono text-apple-muted hover:text-white transition-colors flex items-center gap-2 group"
           >
-            <span>Llegir el nostre manifest complet</span>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+            <span>Llegir manifest d&apos;enginyeria</span>
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
 
@@ -36,22 +34,24 @@ export const WhyUs: React.FC<WhyUsProps> = ({ content }) => {
           {content.whyUs.map((item, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-3xl glass-panel hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
+              className="luxury-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between space-y-8"
             >
               <div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-3xl sm:text-4xl font-black font-display text-gradient-crimson">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
+                  <span className="text-3xl sm:text-4xl font-black font-display text-white">
                     {item.number}
                   </span>
                   {item.badge && (
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-space-800 text-titanium-300 uppercase tracking-wider border border-white/[0.08]">
+                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-white/[0.05] text-apple-silver uppercase tracking-wider border border-white/10">
                       {item.badge}
                     </span>
                   )}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3 font-display">{item.title}</h3>
-                <p className="text-sm text-titanium-400 leading-relaxed">{item.description}</p>
+                <p className="text-xs sm:text-sm text-apple-muted leading-relaxed">{item.description}</p>
               </div>
+
+              <div className="h-0.5 w-8 bg-ferrari-red/40 rounded-full"></div>
             </div>
           ))}
         </div>

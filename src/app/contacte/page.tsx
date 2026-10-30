@@ -34,25 +34,25 @@ export default async function ContactePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-void text-white selection:bg-cyber-crimson/30">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
       <Header content={content} />
 
       {/* HERO DE CONTACTE */}
-      <section className="pt-36 sm:pt-44 pb-12 relative tech-grid overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] glow-orb-crimson rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-space-800 border border-white/10 text-cyber-cyan text-xs font-mono uppercase tracking-widest mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
-            MANRESA: 41.7282° N, 1.8288° E · CATALUNYA
+      <section className="pt-40 sm:pt-48 pb-16 relative spotlight-red text-center">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red"></span>
+            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+              CANAL DIRECTE AMB L&apos;ENGINYERIA · MANRESA
+            </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight max-w-4xl mx-auto leading-[1.1]">
-            Comença a jugar en una{' '}
-            <span className="text-gradient-crimson">categoria superior</span>.
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+            Inicia la teva{' '}
+            <span className="text-apple-muted block sm:inline">transformació.</span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-xl text-titanium-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
             Parla directament amb el nostre equip d&apos;enginyeria. Respondrem a la teva sol·licitud en menys de 24 hores laborables sota estricta confidencialitat.
           </p>
         </div>
@@ -62,24 +62,24 @@ export default async function ContactePage() {
       <ContactForm content={content} />
 
       {/* FAQS DE MÀXIMA CONFIANÇA */}
-      <section className="py-24 bg-space-900/60 border-t border-white/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-mono text-cyber-cyan uppercase tracking-widest block mb-2">
+      <section className="py-28 bg-noir-900 border-t border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="max-w-2xl mb-16 sm:mb-20">
+            <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-semibold">
               PREGUNTES FREQÜENTS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black font-display text-white">
-              Transparència absoluta abans de començar
+            <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
+              Transparència absoluta abans de començar.
             </h2>
           </div>
 
           <div className="space-y-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="p-6 rounded-2xl glass-panel border border-white/[0.06] space-y-2">
-                <h3 className="text-base sm:text-lg font-bold font-display text-white">
+              <div key={idx} className="luxury-card rounded-3xl p-8 sm:p-10 space-y-3">
+                <h3 className="text-lg sm:text-xl font-bold font-display text-white">
                   {faq.q}
                 </h3>
-                <p className="text-sm text-titanium-400 leading-relaxed">
+                <p className="text-sm text-apple-muted leading-relaxed">
                   {faq.a}
                 </p>
               </div>

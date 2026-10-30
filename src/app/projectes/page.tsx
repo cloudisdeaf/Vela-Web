@@ -1,26 +1,55 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Metadata } from 'next';
-import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { defaultSiteContent } from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'Projectes & Obra Seleccionada · VELA Manresa',
-  description:
-    'Casos d\'èxit reals desenvolupats per a empreses de Manresa i el Bages amb mètriques empresarials comprovables.',
-};
-
-export default async function ProjectesPage() {
-  const content = await getSiteContent();
+export default function ProjectesPage() {
+  const content = defaultSiteContent;
+  const [filter, setFilter] = useState('tots');
 
   const allProjects = [
-    ...content.portfolio,
+    {
+      id: 'cas-1',
+      title: 'Clínica Mèdica & Odontologia Bages',
+      client: 'Sector Sanitari Privat',
+      categoryTag: 'salut',
+      category: 'Plataforma Web + Bot de Cites',
+      metric: '+310% primeres consultes en 60 dies',
+      description:
+        'Desenvolupament web integral amb integració d\'intel·ligència artificial per a gestió d\'agendes mèdiques privades i protecció de dades sanitàries.',
+      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      id: 'cas-2',
+      title: 'Can Prat Enginyeria & Automoció',
+      client: 'Taller Especialitzat & Renting',
+      categoryTag: 'automocio',
+      category: 'Web Corporativa + WhatsApp CRM',
+      metric: '0 trucades perdudes en horari d\'obertura',
+      description:
+        'Plataforma d\'autoritat digital que automatitza pressupostos preliminars i centralitza el contacte de clients prèmium del Bages.',
+      image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      id: 'cas-3',
+      title: 'Boutique D\'Autor & Moda Manresa',
+      client: 'Retail d\'Alta Gamma',
+      categoryTag: 'retail',
+      category: 'Catàleg Digital & Estratègia Social',
+      metric: 'ROI x4.8 en campanyes locals',
+      description:
+        'Experiència digital minimalista i exclusiva que transmet el valor de la confecció local artesanal a un públic d\'alt poder adquisitiu.',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+    },
     {
       id: 'cas-4',
       title: 'Rovira & Associats Advocats',
       client: 'Sector Jurídic & Fiscal',
+      categoryTag: 'serveis',
       category: 'Web Corporativa + Portal Privat',
       metric: 'Imatge de prestigi bancari & protecció RGPD',
       description:
@@ -31,6 +60,7 @@ export default async function ProjectesPage() {
       id: 'cas-5',
       title: 'Restaurant Gastronòmic La Plana',
       client: 'Hostaleria & Cuina de Mercat',
+      categoryTag: 'serveis',
       category: 'Plataforma Web + Reserva de Taules',
       metric: 'Cap de setmana complet 3 setmanes abans',
       description:
@@ -41,6 +71,7 @@ export default async function ProjectesPage() {
       id: 'cas-6',
       title: 'Gimnàs & Centre de Rendiment Bages',
       client: 'Salut & Fitness',
+      categoryTag: 'salut',
       category: 'Web + Automatització d\'Altes',
       metric: '+85 socis nous el primer trimestre',
       description:
@@ -49,78 +80,106 @@ export default async function ProjectesPage() {
     },
   ];
 
+  const filteredProjects =
+    filter === 'tots'
+      ? allProjects
+      : allProjects.filter((p) => p.categoryTag === filter);
+
   return (
-    <main className="min-h-screen bg-void text-white selection:bg-cyber-crimson/30">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
       <Header content={content} />
 
       {/* HERO DE PROJECTES */}
-      <section className="pt-36 sm:pt-44 pb-20 relative tech-grid overflow-hidden">
-        <div className="absolute top-1/3 right-1/4 w-[500px] h-[300px] glow-orb-cyan rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-space-800 border border-white/10 text-cyber-crimson text-xs font-mono uppercase tracking-widest mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyber-crimson animate-pulse"></span>
-            PORTFOLI SELECCIONAT · BAGES
+      <section className="pt-40 sm:pt-48 pb-20 relative spotlight-red text-center">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red"></span>
+            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+              OBRA SELECCIONADA & RESULTATS
+            </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight max-w-4xl mx-auto leading-[1.1]">
-            Obra d&apos;enginyeria amb{' '}
-            <span className="text-gradient-cyan">impacte econòmic real</span>.
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+            Casos reals.{' '}
+            <span className="text-apple-muted block sm:inline">Impacte demostrable.</span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-xl text-titanium-400 max-w-2xl mx-auto leading-relaxed">
-            No mesurem l&apos;èxit en clics abstractes. El mesurem en visites mèdiques, trucades concertades, nous contractes i prestigi d&apos;alta gamma.
+          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
+            No mesurem l&apos;èxit en impressions buides. El mesurem en visites mèdiques, reserves confirmades i facturació corporativa.
           </p>
+
+          {/* FILTRE INTERACTIU */}
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
+            {[
+              { id: 'tots', label: 'Tots els Projectes' },
+              { id: 'salut', label: 'Salut & Mèdic' },
+              { id: 'automocio', label: 'Automoció & Indústria' },
+              { id: 'retail', label: 'Moda & Retail' },
+              { id: 'serveis', label: 'Serveis & Hostaleria' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setFilter(tab.id)}
+                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                  filter === tab.id
+                    ? 'bg-white text-black font-bold'
+                    : 'bg-noir-900 text-apple-muted hover:text-white border border-white/[0.08]'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* GRAELLA DE PROJECTES AMPLIADA */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allProjects.map((project) => (
+      {/* GALERIA EDITORIAL */}
+      <section className="py-24 border-t border-white/[0.06] bg-noir-950">
+        <div className="max-w-6xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {filteredProjects.map((project, idx) => (
               <div
                 key={project.id}
-                className="group rounded-3xl overflow-hidden glass-panel flex flex-col justify-between transition-all duration-500 hover:border-cyber-cyan/40 hover:shadow-[0_0_40px_rgba(0,240,255,0.12)]"
+                className="luxury-card rounded-3xl overflow-hidden flex flex-col justify-between group"
               >
-                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-space-900">
+                <div className="relative h-72 sm:h-80 w-full overflow-hidden bg-noir-900">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-85 group-hover:brightness-100"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-space-900 via-transparent to-transparent opacity-95" />
-
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-void/80 backdrop-blur-md text-[11px] font-mono text-titanium-200 border border-white/10">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-black/80 backdrop-blur-md text-white border border-white/10">
                       {project.client}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-block px-3 py-1 rounded-lg bg-cyber-crimson text-white text-xs font-bold font-display shadow-lg">
-                      {project.metric}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-7 flex flex-col flex-grow justify-between space-y-4">
+                <div className="p-8 sm:p-10 space-y-4 flex-grow flex flex-col justify-between">
                   <div>
-                    <span className="text-xs font-mono text-cyber-cyan uppercase tracking-wider block mb-1">
+                    <span className="text-xs font-mono uppercase tracking-wider text-apple-muted block mb-1">
                       {project.category}
                     </span>
-                    <h2 className="text-xl font-bold font-display text-white group-hover:text-cyber-cyan transition-colors">
+                    <h2 className="text-2xl font-bold font-display text-white group-hover:text-ferrari-red transition-colors">
                       {project.title}
                     </h2>
-                    <p className="text-sm text-titanium-400 leading-relaxed mt-2">
+                    <p className="text-sm text-apple-muted leading-relaxed mt-2">
                       {project.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-titanium-300">
-                    <span>ARQUITECTURA NEXT.JS</span>
-                    <span className="text-cyber-amber">100% BLINDAT</span>
+                  <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-white">
+                      {project.metric}
+                    </span>
+                    <Link
+                      href="/contacte"
+                      className="text-xs font-semibold uppercase tracking-wider text-apple-muted group-hover:text-white transition-colors"
+                    >
+                      Veure Solució →
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -129,21 +188,21 @@ export default async function ProjectesPage() {
         </div>
       </section>
 
-      {/* CALL TO ACTION */}
-      <section className="py-24 text-center border-t border-white/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-black font-display text-white">
-            Vols que el teu negoci sigui el pròxim cas d&apos;èxit?
+      {/* CTA FINAL */}
+      <section className="py-28 text-center border-t border-white/[0.06] bg-noir-900">
+        <div className="max-w-3xl mx-auto px-6 lg:px-12 space-y-6">
+          <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
+            El teu negoci mereix un actiu digital a aquest nivell.
           </h2>
-          <p className="text-sm sm:text-base text-titanium-400">
-            Tenim capacitat per a un màxim de 2 projectes nous aquest trimestre per mantenir el màxim estàndard de qualitat.
+          <p className="text-sm sm:text-base text-apple-muted">
+            Acceptem un màxim de 2 projectes simultanis per mantenir aquest estàndard de precisió.
           </p>
-          <div className="pt-2">
+          <div className="pt-4">
             <Link
               href="/contacte"
-              className="inline-block px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-cyber-amber to-yellow-300 hover:brightness-110 active:scale-95 transition-all shadow-xl"
+              className="inline-block px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-ferrari-red hover:bg-ferrari-dark transition-all duration-200 shadow-[0_0_25px_rgba(225,6,0,0.3)]"
             >
-              Consultar Disponibilitat de Calendari
+              Consultar Calendari de Treball
             </Link>
           </div>
         </div>

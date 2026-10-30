@@ -32,7 +32,7 @@ body {
 }
 
 ::selection {
-  background: rgba(220, 20, 60, 0.4);
+  background: rgba(225, 6, 0, 0.4);
   color: #FFFFFF;
 }
 
@@ -51,51 +51,68 @@ body {
   background: #E10600;
 }
 
-/* Superfícies de luxe Apple / Ferrari */
+/* Targetes de luxe Apple / Ferrari */
 .luxury-card {
-  background: #0A0A0A;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .luxury-card:hover {
-  background: #0E0E0E;
-  border-color: rgba(255, 255, 255, 0.16);
+  background: #0D0D0D;
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
 }
 
+.luxury-card-active {
+  background: #0E0E0E;
+  border: 1px solid rgba(225, 6, 0, 0.35);
+  box-shadow: 0 0 35px rgba(225, 6, 0, 0.1);
+}
+
+/* Barra de navegació de vidre translúcid */
 .glass-nav {
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Foco de llum cinematogràfic Ferrari Rosso Corsa */
+/* Spotlights de llum cinematogràfica Ferrari */
 .spotlight-red {
-  background: radial-gradient(circle at 50% 0%, rgba(225, 6, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(225, 6, 0, 0.14) 0%, rgba(0, 0, 0, 0) 65%);
 }
 
 .spotlight-platinum {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0) 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 60%);
 }
 
 /* Tipografia de gran contrast estil Apple */
-.text-apple-headline {
+.text-headline {
   letter-spacing: -0.04em;
-  line-height: 1.04;
+  line-height: 1.05;
 }
 
-.text-apple-sub {
+.text-sub {
   color: #86868B;
   letter-spacing: -0.015em;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Línia d'or / platí ultra-fina */
+/* Separadors lineals ultra-fins */
 .hairline {
   height: 1px;
   background: rgba(255, 255, 255, 0.08);
+}
+
+/* Animació de revelació suau */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 @layer utilities {

@@ -10,13 +10,13 @@ import { ContactForm } from '@/components/ContactForm';
 import { Footer } from '@/components/Footer';
 import { CookieBanner } from '@/components/CookieBanner';
 
-export const revalidate = 60; // Regeneració incremental cada 60 segons
+export const revalidate = 60; // Regeneració incremental en segons
 
 export default async function HomePage() {
   const content = await getSiteContent();
 
   return (
-    <main className="min-h-screen bg-void text-white selection:bg-cyber-crimson/30 relative overflow-hidden">
+    <main className="min-h-screen bg-noir-950 text-apple-white selection:bg-ferrari-red/40 relative overflow-hidden">
       <Header content={content} />
       <Hero content={content} />
       <Services content={content} />
