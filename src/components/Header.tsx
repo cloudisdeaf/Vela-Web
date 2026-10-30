@@ -17,19 +17,17 @@ export const Header: React.FC<HeaderProps> = ({ content }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Tancar menú mòbil al canviar de ruta
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
   const navLinks = [
-    { label: 'Inici', href: '/' },
     { label: 'Serveis', href: '/serveis' },
     { label: 'Projectes', href: '/projectes' },
     { label: 'Seguretat & NDA', href: '/seguretat' },
@@ -39,104 +37,90 @@ export const Header: React.FC<HeaderProps> = ({ content }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-void/85 backdrop-blur-2xl border-b border-white/[0.08] py-3.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)]'
-            : 'bg-transparent py-5 sm:py-6'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'glass-nav py-3.5 shadow-2xl' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between">
-            {/* LOGO CORPORATIU & IDENTITAT VELA */}
-            <Link href="/" className="flex items-center gap-3.5 group focus:outline-none">
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-white/15 bg-space-800 shadow-[0_0_20px_rgba(255,30,86,0.2)] flex-shrink-0 transition-all duration-300 group-hover:scale-105 group-hover:border-cyber-crimson/50">
+            {/* LOGO MONOLÍTIC */}
+            <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+              <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-noir-850 border border-white/10 flex-shrink-0">
                 {content.brand.logoUrl ? (
                   <Image
                     src={content.brand.logoUrl}
-                    alt={`${content.brand.name} Logo`}
+                    alt={content.brand.name}
                     fill
                     className="object-cover"
                     priority
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center font-bold text-cyber-amber text-lg bg-cyber-crimson">
+                  <div className="w-full h-full bg-ferrari-red text-white font-bold flex items-center justify-center text-xs">
                     V*
                   </div>
                 )}
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-black text-xl tracking-tight text-white group-hover:text-cyber-crimson transition-colors font-display">
-                    {content.brand.name}
-                  </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyber-cyan animate-pulse"></span>
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-titanium-400 font-mono font-medium">
-                  {content.brand.location.split('·')[0].trim()}
+                <span className="font-extrabold text-base tracking-tight text-white font-display">
+                  {content.brand.name}
+                </span>
+                <span className="text-[9px] uppercase tracking-widest text-apple-muted font-mono -mt-0.5">
+                  MANRESA
                 </span>
               </div>
             </Link>
 
-            {/* NAVEGACIÓ MULTI-PÀGINA ESCRIPTORI */}
-            <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-space-800/80 border border-white/[0.08] backdrop-blur-xl">
+            {/* NAVEGACIÓ D'AUTOR ESTIL APPLE */}
+            <nav className="hidden md:flex items-center gap-9 text-xs font-medium tracking-wide">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all ${
-                      isActive
-                        ? 'text-white bg-white/[0.1] shadow-inner font-bold'
-                        : 'text-titanium-400 hover:text-white hover:bg-white/[0.04]'
+                    className={`transition-colors duration-200 ${
+                      isActive ? 'text-white font-semibold' : 'text-apple-muted hover:text-white'
                     }`}
                   >
-                    {isActive && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyber-crimson"></span>
-                    )}
                     {link.label}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* ACCIONS D'ESCRIPTORI (DISPONIBILITAT + CTA) */}
-            <div className="hidden lg:flex items-center gap-4">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-space-800/60 border border-white/[0.06] text-[11px] font-mono text-titanium-300">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span>2 PLACES Q4</span>
-              </div>
+            {/* BOTÓ D'ACCIÓ REFINAT */}
+            <div className="hidden md:flex items-center gap-6">
+              <span className="text-[11px] font-mono text-apple-muted flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>Places Obertes Q4</span>
+              </span>
 
               <Link
                 href="/contacte"
-                className="relative inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyber-crimson via-cyber-coral to-cyber-amber hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(255,30,86,0.35)] cursor-pointer"
+                className="px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-ferrari-red hover:bg-ferrari-dark active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(225,6,0,0.25)]"
               >
                 Iniciar Projecte
               </Link>
             </div>
 
-            {/* BOTÓ D'OBERTURA MÒBIL */}
-            <div className="flex items-center gap-3 lg:hidden">
+            {/* BOTÓ MÒBIL MINIMALISTA */}
+            <div className="flex items-center gap-3 md:hidden">
               <Link
                 href="/contacte"
-                className="px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-cyber-crimson"
+                className="px-3.5 py-1.5 rounded-full text-[11px] font-semibold text-white bg-ferrari-red"
               >
                 Contacte
               </Link>
-
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2.5 rounded-xl bg-space-800 border border-white/10 text-white hover:border-cyber-crimson/50 transition-colors focus:outline-none"
-                aria-label="Menú de navegació"
+                className="p-2 text-apple-muted hover:text-white focus:outline-none"
+                aria-label="Menú"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                   ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                   )}
                 </svg>
               </button>
@@ -145,69 +129,43 @@ export const Header: React.FC<HeaderProps> = ({ content }) => {
         </div>
       </header>
 
-      {/* MENÚ MÒBIL FULL-SCREEN ULTRA-FUTURISTA */}
+      {/* MENÚ MÒBIL ESTIL APPLE MODERNE */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-void/98 backdrop-blur-3xl lg:hidden flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto animate-in fade-in duration-200">
-          <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-              <span className="text-xs font-mono uppercase tracking-widest text-titanium-400">
-                NAVEGACIÓ ARQUITECTURAL
-              </span>
-              <span className="text-xs font-mono text-cyber-cyan flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-ping"></span>
-                SISTEMA EN LÍNIA
-              </span>
-            </div>
-
-            <nav className="flex flex-col space-y-3">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`flex items-center justify-between p-4 rounded-2xl text-lg font-bold font-display transition-all ${
-                      isActive
-                        ? 'bg-space-800 border border-cyber-crimson/40 text-white shadow-[0_0_20px_rgba(255,30,86,0.15)]'
-                        : 'bg-space-900/60 border border-white/[0.06] text-titanium-300 hover:text-white'
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                    <svg
-                      className={`w-5 h-5 transition-transform ${isActive ? 'text-cyber-crimson translate-x-1' : 'text-titanium-500'}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          <div className="pt-6 space-y-4 border-t border-white/[0.08]">
+        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl md:hidden pt-28 pb-12 px-8 flex flex-col justify-between">
+          <nav className="space-y-6">
+            <Link
+              href="/"
+              className={`block text-2xl font-bold font-display ${pathname === '/' ? 'text-white' : 'text-apple-muted'}`}
+            >
+              Inici
+            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`block text-2xl font-bold font-display ${pathname === link.href ? 'text-white' : 'text-apple-muted'}`}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
               href="/contacte"
-              className="block w-full py-4 rounded-xl text-center text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyber-crimson via-cyber-coral to-cyber-amber shadow-lg"
+              className={`block text-2xl font-bold font-display ${pathname === '/contacte' ? 'text-ferrari-red' : 'text-apple-muted'}`}
             >
-              Sol·licitar Anàlisi Confidencial
+              Contacte & Pressupost
             </Link>
+          </nav>
 
-            <div className="flex items-center justify-between text-xs font-mono text-titanium-400">
-              <a href={`mailto:${content.brand.email}`} className="hover:text-white transition-colors">
-                {content.brand.email}
-              </a>
-              <a
-                href={content.brand.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyber-crimson font-bold"
-              >
-                {content.brand.instagramHandle}
-              </a>
-            </div>
+          <div className="pt-8 border-t border-white/10 space-y-4">
+            <Link
+              href="/contacte"
+              className="block w-full py-3.5 rounded-full text-center text-xs font-semibold text-white bg-ferrari-red"
+            >
+              Sol·licitar Auditoria Confidencial
+            </Link>
+            <p className="text-center text-xs font-mono text-apple-muted">
+              Manresa, Barcelona · velamanresa@gmail.com
+            </p>
           </div>
         </div>
       )}

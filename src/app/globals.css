@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
 }
 
 * {
@@ -20,114 +19,83 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #040407;
-  color: #F8FAFC;
+  background-color: #000000;
+  color: #FFFFFF;
 }
 
 body {
-  background-color: #040407;
-  color: #F8FAFC;
-  font-family: var(--font-inter);
+  background-color: #000000;
+  color: #F5F5F7;
+  font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
-  background: rgba(255, 30, 86, 0.35);
+  background: rgba(220, 20, 60, 0.4);
   color: #FFFFFF;
 }
 
-/* Scrollbar Minimalista Futurista */
+/* Scrollbar ultra-fina d'alta precisió estil Apple */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #040407;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #171724;
+  background: #222222;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF1E56;
+  background: #E10600;
 }
 
-/* Efecte Hologràfic de Vidre */
-.glass-panel {
-  background: rgba(13, 13, 21, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Superfícies de luxe Apple / Ferrari */
+.luxury-card {
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-glow {
-  background: rgba(17, 17, 28, 0.75);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 30, 86, 0.2);
-  box-shadow: 0 0 35px rgba(255, 30, 86, 0.08), inset 0 0 20px rgba(255, 30, 86, 0.03);
+.luxury-card:hover {
+  background: #0E0E0E;
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
 }
 
-.glass-pill {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.glass-nav {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Gradients de text futuristes */
-.text-gradient-crimson {
-  background: linear-gradient(135deg, #FFFFFF 20%, #FF1E56 70%, #FFB800 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Foco de llum cinematogràfic Ferrari Rosso Corsa */
+.spotlight-red {
+  background: radial-gradient(circle at 50% 0%, rgba(225, 6, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
 }
 
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #FFFFFF 15%, #00F0FF 80%, #8B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.spotlight-platinum {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0) 65%);
 }
 
-.text-gradient-silver {
-  background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Tipografia de gran contrast estil Apple */
+.text-apple-headline {
+  letter-spacing: -0.04em;
+  line-height: 1.04;
 }
 
-/* Reixeta Tecnològica */
-.tech-grid {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 56px 56px;
+.text-apple-sub {
+  color: #86868B;
+  letter-spacing: -0.015em;
+  line-height: 1.5;
 }
 
-.tech-grid-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* Brillantors Ambientals */
-.glow-orb-crimson {
-  background: radial-gradient(circle, rgba(255, 30, 86, 0.18) 0%, rgba(255, 30, 86, 0) 70%);
-}
-
-.glow-orb-cyan {
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, rgba(0, 240, 255, 0) 70%);
-}
-
-.glow-orb-violet {
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%);
-}
-
-/* Línia de Separació Lluminosa */
-.neon-line {
+/* Línia d'or / platí ultra-fina */
+.hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 30, 86, 0.4), rgba(0, 240, 255, 0.4), transparent);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 @layer utilities {

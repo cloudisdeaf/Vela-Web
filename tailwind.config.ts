@@ -5,68 +5,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: '#040407',
-        space: {
-          900: '#07070C',
-          800: '#0D0D15',
-          700: '#13131F',
-          600: '#1B1B2B',
+        noir: {
+          950: '#000000',
+          900: '#060606',
+          850: '#0A0A0A',
+          800: '#101010',
+          700: '#161616',
+          600: '#222222',
         },
-        cyber: {
-          crimson: '#FF1E56',
-          coral: '#FF4370',
-          cyan: '#00F0FF',
-          violet: '#8B5CF6',
-          amber: '#FFB800',
+        ferrari: {
+          red: '#E10600',
+          dark: '#B00400',
+          glow: 'rgba(225, 6, 0, 0.15)',
         },
-        titanium: {
-          100: '#F8FAFC',
-          200: '#E2E8F0',
-          300: '#CBD5E1',
-          400: '#94A3B8',
-          500: '#64748B',
+        apple: {
+          white: '#F5F5F7',
+          silver: '#E5E5EA',
+          muted: '#86868B',
+          dark: '#424245',
+        },
+        gold: {
+          satin: '#D4AF37',
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
-      },
-      animation: {
-        'marquee': 'marquee 28s linear infinite',
-        'marquee-slow': 'marquee 45s linear infinite',
-        'marquee-reverse': 'marquee-reverse 32s linear infinite',
-        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
-        'aurora': 'aurora 14s ease-in-out infinite alternate',
-        'float-slow': 'float-slow 7s ease-in-out infinite',
-        'radar': 'radar 8s linear infinite',
-      },
-      keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        'marquee-reverse': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
-        },
-        'pulse-glow': {
-          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
-          '50%': { opacity: '0.7', transform: 'scale(1.08)' },
-        },
-        aurora: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
-        },
-        'float-slow': {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-14px)' },
-        },
-        radar: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
       },
     },
   },
