@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { MobileQuickBar } from '@/components/MobileQuickBar';
 import { defaultSiteContent } from '@/lib/content';
 
 export default function ProjectesPage() {
@@ -86,29 +87,29 @@ export default function ProjectesPage() {
       : allProjects.filter((p) => p.categoryTag === filter);
 
   return (
-    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40 pb-16 md:pb-0">
       <Header content={content} />
 
       {/* HERO DE PROJECTES */}
-      <section className="pt-40 sm:pt-48 pb-20 relative spotlight-red text-center">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red"></span>
-            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+      <section className="pt-36 sm:pt-48 pb-16 sm:pb-24 relative spotlight-red text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-noir-900/80 backdrop-blur-xl mb-8">
+            <span className="w-2 h-2 rounded-full bg-ferrari-red animate-pulse"></span>
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-apple-silver uppercase font-bold">
               OBRA SELECCIONADA & RESULTATS
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-white text-headline font-display">
             Casos reals.{' '}
-            <span className="text-apple-muted block sm:inline">Impacte demostrable.</span>
+            <span className="text-shimmer block sm:inline">Impacte demostrable.</span>
           </h1>
 
-          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 sm:mt-8 text-base sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
             No mesurem l&apos;èxit en impressions buides. El mesurem en visites mèdiques, reserves confirmades i facturació corporativa.
           </p>
 
-          {/* FILTRE INTERACTIU */}
+          {/* FILTRE INTERACTIU HORITZONTAL SWIPEABLE */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
             {[
               { id: 'tots', label: 'Tots els Projectes' },
@@ -121,9 +122,9 @@ export default function ProjectesPage() {
                 key={tab.id}
                 type="button"
                 onClick={() => setFilter(tab.id)}
-                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
                   filter === tab.id
-                    ? 'bg-white text-black font-bold'
+                    ? 'bg-ferrari-red text-white font-bold shadow-[0_0_20px_rgba(255,30,22,0.4)]'
                     : 'bg-noir-900 text-apple-muted hover:text-white border border-white/[0.08]'
                 }`}
               >
@@ -134,64 +135,69 @@ export default function ProjectesPage() {
         </div>
       </section>
 
-      {/* GALERIA EDITORIAL */}
-      <section className="py-24 border-t border-white/[0.06] bg-noir-950">
-        <div className="max-w-6xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {filteredProjects.map((project, idx) => (
-              <div
-                key={project.id}
-                className="luxury-card rounded-3xl overflow-hidden flex flex-col justify-between group"
-              >
-                <div className="relative h-72 sm:h-80 w-full overflow-hidden bg-noir-900">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-black/80 backdrop-blur-md text-white border border-white/10">
-                      {project.client}
-                    </span>
-                  </div>
+      {/* GRAELLA DE CASOS */}
+      <section className="py-20 sm:py-28 border-t border-white/[0.08] bg-noir-950/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12 sm:space-y-16">
+          {filteredProjects.map((project, idx) => (
+            <div
+              key={project.id}
+              className="luxury-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group"
+            >
+              <div className="lg:col-span-7 relative h-64 sm:h-96 w-full overflow-hidden bg-noir-900">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-95 group-hover:brightness-105"
+                />
+              </div>
+
+              <div className="lg:col-span-5 p-6 sm:p-10 md:p-12 space-y-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono text-apple-muted uppercase tracking-wider">
+                    CAS 0{idx + 1} · {project.client}
+                  </span>
+                  <span className="text-xs font-mono text-ferrari-red font-bold">
+                    {project.category}
+                  </span>
                 </div>
 
-                <div className="p-8 sm:p-10 space-y-4 flex-grow flex flex-col justify-between">
-                  <div>
-                    <span className="text-xs font-mono uppercase tracking-wider text-apple-muted block mb-1">
-                      {project.category}
-                    </span>
-                    <h2 className="text-2xl font-bold font-display text-white group-hover:text-ferrari-red transition-colors">
-                      {project.title}
-                    </h2>
-                    <p className="text-sm text-apple-muted leading-relaxed mt-2">
-                      {project.description}
-                    </p>
-                  </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white font-display group-hover:text-apple-white transition-colors">
+                  {project.title}
+                </h3>
 
-                  <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-white">
-                      {project.metric}
-                    </span>
-                    <Link
-                      href="/contacte"
-                      className="text-xs font-semibold uppercase tracking-wider text-apple-muted group-hover:text-white transition-colors"
-                    >
-                      Veure Solució →
-                    </Link>
-                  </div>
+                <p className="text-sm text-apple-silver leading-relaxed">
+                  {project.description}
+                </p>
+
+                <div className="p-4 rounded-2xl bg-noir-900/90 border border-white/[0.08]">
+                  <span className="text-xs font-mono text-apple-muted uppercase tracking-wider block mb-1">
+                    Mètrica de Negoci Assolida
+                  </span>
+                  <span className="text-base font-bold text-white font-display">
+                    {project.metric}
+                  </span>
+                </div>
+
+                <div>
+                  <Link
+                    href="/contacte"
+                    className="text-xs font-bold uppercase tracking-wider text-white hover:text-ferrari-red transition-colors inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Sol·licitar Arquitectura Similar</span>
+                    <span>→</span>
+                  </Link>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-28 text-center border-t border-white/[0.06] bg-noir-900">
-        <div className="max-w-3xl mx-auto px-6 lg:px-12 space-y-6">
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
+      <section className="py-20 sm:py-28 text-center border-t border-white/[0.08] bg-noir-900/80">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12 space-y-6">
+          <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-headline">
             El teu negoci mereix un actiu digital a aquest nivell.
           </h2>
           <p className="text-sm sm:text-base text-apple-muted">
@@ -200,7 +206,7 @@ export default function ProjectesPage() {
           <div className="pt-4">
             <Link
               href="/contacte"
-              className="inline-block px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-ferrari-red hover:bg-ferrari-dark transition-all duration-200 shadow-[0_0_25px_rgba(225,6,0,0.3)]"
+              className="inline-block px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-white btn-ferrari-glow"
             >
               Consultar Calendari de Treball
             </Link>
@@ -209,6 +215,7 @@ export default function ProjectesPage() {
       </section>
 
       <Footer content={content} />
+      <MobileQuickBar content={content} />
     </main>
   );
 }

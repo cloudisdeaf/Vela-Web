@@ -1,6 +1,7 @@
 import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
+import { MarqueeTicker } from '@/components/MarqueeTicker';
 import { Services } from '@/components/Services';
 import { CockpitBenchmark } from '@/components/CockpitBenchmark';
 import { SecurityGuarantee } from '@/components/SecurityGuarantee';
@@ -10,6 +11,7 @@ import { Testimonials } from '@/components/Testimonials';
 import { ContactForm } from '@/components/ContactForm';
 import { Footer } from '@/components/Footer';
 import { CookieBanner } from '@/components/CookieBanner';
+import { MobileQuickBar } from '@/components/MobileQuickBar';
 
 export const revalidate = 60; // Regeneració incremental en segons
 
@@ -17,9 +19,10 @@ export default async function HomePage() {
   const content = await getSiteContent();
 
   return (
-    <main className="min-h-screen bg-noir-950 text-apple-white selection:bg-ferrari-red/40 relative overflow-hidden">
+    <main className="min-h-screen bg-noir-950 text-apple-white selection:bg-ferrari-red/40 relative overflow-hidden pb-16 md:pb-0">
       <Header content={content} />
       <Hero content={content} />
+      <MarqueeTicker />
       <Services content={content} />
       <CockpitBenchmark />
       <SecurityGuarantee content={content} />
@@ -29,6 +32,7 @@ export default async function HomePage() {
       <ContactForm content={content} />
       <Footer content={content} />
       <CookieBanner />
+      <MobileQuickBar content={content} />
     </main>
   );
 }

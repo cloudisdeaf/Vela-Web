@@ -4,6 +4,7 @@ import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ContactForm } from '@/components/ContactForm';
+import { MobileQuickBar } from '@/components/MobileQuickBar';
 
 export const metadata: Metadata = {
   title: 'Contacte Confidencial & Sol·licitud de Proposta · VELA Manresa',
@@ -34,25 +35,25 @@ export default async function ContactePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40 pb-16 md:pb-0">
       <Header content={content} />
 
       {/* HERO DE CONTACTE */}
-      <section className="pt-40 sm:pt-48 pb-16 relative spotlight-red text-center">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-ferrari-red"></span>
-            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+      <section className="pt-36 sm:pt-48 pb-16 sm:pb-24 relative spotlight-red text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-noir-900/80 backdrop-blur-xl mb-8">
+            <span className="w-2 h-2 rounded-full bg-ferrari-red animate-pulse"></span>
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-apple-silver uppercase font-bold">
               CANAL DIRECTE AMB L&apos;ENGINYERIA · MANRESA
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-white text-headline font-display">
             Inicia la teva{' '}
-            <span className="text-apple-muted block sm:inline">transformació.</span>
+            <span className="text-shimmer block sm:inline">transformació.</span>
           </h1>
 
-          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 sm:mt-8 text-base sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
             Parla directament amb el nostre equip d&apos;enginyeria. Respondrem a la teva sol·licitud en menys de 24 hores laborables sota estricta confidencialitat.
           </p>
         </div>
@@ -62,24 +63,24 @@ export default async function ContactePage() {
       <ContactForm content={content} />
 
       {/* FAQS DE MÀXIMA CONFIANÇA */}
-      <section className="py-28 bg-noir-900 border-t border-white/[0.06]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <div className="max-w-2xl mb-16 sm:mb-20">
-            <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-semibold">
+      <section className="py-20 sm:py-28 bg-noir-900/80 border-t border-white/[0.08]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="max-w-2xl mb-12 sm:mb-20">
+            <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-bold">
               PREGUNTES FREQÜENTS
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
+            <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-headline">
               Transparència absoluta abans de començar.
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="luxury-card rounded-3xl p-8 sm:p-10 space-y-3">
+              <div key={idx} className="luxury-card rounded-3xl p-6 sm:p-10 space-y-3">
                 <h3 className="text-lg sm:text-xl font-bold font-display text-white">
                   {faq.q}
                 </h3>
-                <p className="text-sm text-apple-muted leading-relaxed">
+                <p className="text-sm text-apple-silver leading-relaxed">
                   {faq.a}
                 </p>
               </div>
@@ -89,6 +90,7 @@ export default async function ContactePage() {
       </section>
 
       <Footer content={content} />
+      <MobileQuickBar content={content} />
     </main>
   );
 }

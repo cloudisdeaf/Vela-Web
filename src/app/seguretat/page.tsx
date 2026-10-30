@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { getSiteContent } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { MobileQuickBar } from '@/components/MobileQuickBar';
 
 export const metadata: Metadata = {
   title: 'Seguretat de Grau Bancari & Rigor Jurídic · VELA Manresa',
@@ -60,81 +61,73 @@ export default async function SeguretatPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40">
+    <main className="min-h-screen bg-noir-950 text-white selection:bg-ferrari-red/40 pb-16 md:pb-0">
       <Header content={content} />
 
-      <section className="pt-40 sm:pt-48 pb-20 relative spotlight-platinum text-center">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-noir-900 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span className="text-[11px] font-mono tracking-widest text-apple-silver uppercase">
+      <section className="pt-36 sm:pt-48 pb-16 sm:pb-24 relative spotlight-platinum text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-noir-900/80 backdrop-blur-xl mb-8">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-apple-silver uppercase font-bold">
               MARC JURÍDIC & CIBERSEGURETAT
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white text-apple-headline font-display">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-white text-headline font-display">
             Confidencialitat.{' '}
-            <span className="text-apple-muted block sm:inline">Sense concessions.</span>
+            <span className="text-shimmer block sm:inline">Sense concessions.</span>
           </h1>
 
-          <p className="mt-8 text-lg sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 sm:mt-8 text-base sm:text-xl text-apple-muted max-w-2xl mx-auto leading-relaxed">
             La protecció del teu negoci i la reputació dels teus clients és el nostre primer principi d&apos;enginyeria.
           </p>
         </div>
       </section>
 
-      <section className="py-24 border-t border-white/[0.06] bg-noir-950">
-        <div className="max-w-6xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-20 sm:py-28 border-t border-white/[0.08] bg-noir-950/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {securityPillars.map((p) => (
               <div
                 key={p.code}
-                className="luxury-card rounded-3xl p-10 flex flex-col justify-between space-y-6"
+                className="luxury-card rounded-3xl p-6 sm:p-10 flex flex-col justify-between space-y-6"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono text-apple-muted">{p.code}</span>
-                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.05] text-apple-silver border border-white/10">
+                    <span className="text-xs font-mono text-apple-muted font-bold">{p.code}</span>
+                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.08] text-apple-silver border border-white/10 font-bold">
                       {p.badge}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold font-display text-white mb-3">
+                  <h3 className="text-xl sm:text-2xl font-black text-white font-display mb-3">
                     {p.title}
-                  </h2>
-                  <p className="text-sm text-apple-muted leading-relaxed">
+                  </h3>
+                  <p className="text-sm text-apple-silver leading-relaxed">
                     {p.description}
                   </p>
                 </div>
-
-                <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-apple-dark">
-                  STANDARDS ISO / OWASP
-                </div>
+                <div className="h-0.5 w-8 bg-ferrari-red/50 rounded-full"></div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="py-28 border-t border-white/[0.06] bg-noir-900 text-center">
-        <div className="max-w-3xl mx-auto px-6 lg:px-12 space-y-6">
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-display text-apple-headline">
-            Sol·licita el nostre acord de confidencialitat (NDA).
-          </h2>
-          <p className="text-sm sm:text-base text-apple-muted">
-            Formalitzem el document legal abans de la primera reunió d&apos;estratègia.
-          </p>
-          <div className="pt-4">
+          <div className="mt-16 pt-10 border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="space-y-1">
+              <h4 className="text-base font-bold text-white font-display">Acord de Confidencialitat (NDA) des del primer minut</h4>
+              <p className="text-xs sm:text-sm text-apple-muted">Signem acords legals abans de conèixer cap dada sensible del teu negoci.</p>
+            </div>
             <Link
               href="/contacte"
-              className="inline-block px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-ferrari-red hover:bg-ferrari-dark transition-all duration-200 shadow-[0_0_25px_rgba(225,6,0,0.3)]"
+              className="px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white btn-ferrari-glow whitespace-nowrap"
             >
-              Demanar Model d&apos;Acord NDA
+              Sol·licitar Acord NDA
             </Link>
           </div>
         </div>
       </section>
 
       <Footer content={content} />
+      <MobileQuickBar content={content} />
     </main>
   );
 }

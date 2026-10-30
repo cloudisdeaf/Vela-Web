@@ -60,15 +60,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
   };
 
   return (
-    <section id="contacte" className="py-32 sm:py-40 bg-noir-950 border-t border-white/[0.06] relative">
-      <div className="max-w-6xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <section id="contacte" className="py-24 sm:py-36 md:py-40 bg-noir-950/80 border-t border-white/[0.08] relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-widest text-ferrari-red block mb-3 font-bold">
                 INICIAR CONVERSA
               </span>
-              <h2 className="text-4xl sm:text-6xl font-black text-white font-display text-apple-headline">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display text-headline">
                 Fem quelcom d&apos;extraordinari.
               </h2>
               <p className="mt-4 text-sm sm:text-base text-apple-muted leading-relaxed">
@@ -76,7 +76,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
               </p>
             </div>
 
-            <div className="space-y-4 pt-4 border-t border-white/[0.06] text-xs font-mono text-apple-muted">
+            <div className="space-y-4 pt-4 border-t border-white/[0.08] text-xs font-mono text-apple-muted">
               <div>
                 <span className="block text-[10px] uppercase text-apple-dark">Correu Oficial</span>
                 <a href={`mailto:${content.brand.email}`} className="text-white hover:text-ferrari-red transition-colors text-sm font-sans font-semibold">
@@ -96,7 +96,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
             </div>
           </div>
 
-          <div className="lg:col-span-7 luxury-card rounded-3xl p-8 sm:p-12">
+          <div className="lg:col-span-7 luxury-card rounded-3xl p-6 sm:p-10 md:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="text"
@@ -108,7 +108,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                 autoComplete="off"
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="block text-xs font-mono text-apple-muted uppercase tracking-wider mb-2">
                     Nom i Cognoms *
@@ -119,7 +119,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Marc Vila"
-                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -132,12 +132,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="Vila & Co."
-                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="block text-xs font-mono text-apple-muted uppercase tracking-wider mb-2">
                     Correu electrònic *
@@ -148,7 +148,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="marc@empresa.cat"
-                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -161,7 +161,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+34 600 000 000"
-                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -173,7 +173,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white text-sm focus:border-white focus:outline-none transition-colors"
+                  className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                 >
                   <option value="Plataformes Web d'Autor">Plataformes Web d&apos;Autor (Next.js)</option>
                   <option value="Automatització WhatsApp">Automatització & Bots WhatsApp</option>
@@ -192,7 +192,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Explica'ns què necessita el teu negoci i quins terminis tens previstos..."
-                  className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-white focus:outline-none transition-colors"
+                  className="w-full px-4 py-3.5 rounded-xl bg-noir-900 border border-white/10 text-white placeholder-apple-dark text-sm focus:border-ferrari-red focus:outline-none transition-colors"
                 />
               </div>
 
@@ -211,7 +211,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-ferrari-red hover:bg-ferrari-dark active:scale-95 transition-all shadow-[0_10px_25px_rgba(225,6,0,0.3)] disabled:opacity-50 cursor-pointer"
+                className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-wider text-white btn-ferrari-glow disabled:opacity-50 cursor-pointer"
               >
                 {status === 'loading' ? 'Enviant dades xifrades...' : 'Enviar Sol·licitud Confidencial'}
               </button>
