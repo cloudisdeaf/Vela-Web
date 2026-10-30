@@ -1,123 +1,61 @@
-# 🌊 VELA* — High-End Web Architecture & Digital Studio
+# 🏁 VELA* — High-End Web Architecture & Digital Studio
 
-Plataforma web de màxim prestigi i autoritat per a l'agència de disseny web **VELA** (Manresa, Barcelona).
-Construït amb **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, seguretat OWASP Top 10, gestor professional de cookies RGPD i **Panell CMS Visual d'Edició en temps real**.
+Plataforma d'enginyeria i disseny web d'elit per a l'agència **VELA** (Manresa, Barcelona).
+Alineada amb els més alts estàndards visuals d'Awwwards, Apple i Ferrari: màxima autoritat, sobrietat, confidencialitat i velocitat extrema.
 
----
-
-## 💎 Característiques de la Plataforma
-
-- **Estètica d'Alta Gamma:** Paleta fosca obsidiana / titani amb tocs d'or metàl·lic i roig elèctric inspirat en el logotip oficial de VELA.
-- **Autoritat & Confiança Cega:**
-  - Secció de Garantia de Seguretat i Rigor Jurídic (Acord NDA, RGPD europeu, codi de propietat 100% del client).
-  - Portfoli interactiu amb mètriques empresarials clau.
-  - Avals i testimonis de líders del sector.
-- **Panell CMS Visual Tipus Canva (`/admin`):**
-  - Accés protegit per clau mestra.
-  - Split View: controls visuals a l'esquerra i previsualització interactiva a la dreta.
-  - Selector de resolucions (Escriptori, Tauleta, Mòbil).
-  - Modificació a temps real de: Logo, textos del Hero, Serveis, Preus, Escuts de Seguretat, Projectes i Testimonis.
-  - Guardat en 1 clic directament a producció.
-- **Seguretat Blindada:**
-  - Capçaleres HTTP estrictes: CSP (Content Security Policy), HSTS, X-Frame-Options, XSS Protection.
-  - Formulari de contacte amb camp **Honeypot invisible** per a bots, sanitització d'inputs i Rate Limiting basat en IP.
-- **Conformitat Legal Estricta (RGPD / LOPD):**
-  - Banner i modal interactiu de cookies amb configuració per categories (Necessàries, Analítiques, Màrqueting).
-  - Pàgina de Política de Privacitat (`/politica-privacidad`).
-  - Pàgina de Termes i Condicions Contractuals (`/terminos`).
+Desenvolupat amb **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, seguretat OWASP Top 10, gestor professional de cookies RGPD i **Panell CMS Visual d'Edició en viu estil Canva/Figma**.
 
 ---
 
-## 🚀 Guia d'Instal·lació Local
+## 🏛️ Arquitectura Multi-Pàgina
 
-### 1. Requisits previs
-Assegura't de tenir instal·lat [Node.js](https://nodejs.org) (v18.17 o superior) al teu ordinador.
-
-### 2. Instal·lar dependències
-Obre la terminal a la carpeta del projecte:
-```bash
-cd C:\Users\garte\Documents\antigravity\vela-agency
-npm install
-```
-
-### 3. Executar en mode desenvolupament
-```bash
-npm run dev
-```
-Obre [http://localhost:3000](http://localhost:3000) al teu navegador.
+- **Inici (`/`):** Portada d'impacte monumental, titulars esculpits, mètriques d'enginyeria, resum de disciplines, garantia de seguretat, avantatges competitius, obra seleccionada i testimonis verificats.
+- **Serveis (`/serveis`):** Catàleg editorial de 4 disciplines clau amb el **Configurador d'Arquitectura interactiu** per estimar la inversió a l'instant.
+- **Projectes (`/projectes`):** Obra seleccionada amb filtre dinàmic per sectors (Salut, Automoció, Retail, Serveis).
+- **Seguretat & NDA (`/seguretat`):** Marc de ciberseguretat bancària (Acord NDA bilateral, centres de dades a la UE, sobirania de codi 100%, auditories OWASP).
+- **L'Estudi & Manifest (`/nosaltres`):** Filosofia irrenunciable i el cronograma d'execució d'elit de 7 dies.
+- **Contacte (`/contacte`):** Canal directe amb l'enginyeria, formulari sanititzat amb honeypot anti-bots i FAQs de màxima transparència.
+- **Panell CMS Visual (`/admin`):** Panell privat d'edició en viu amb split-view (Controls a l'esquerra, previsualitzador responsive a la dreta amb selecció Escriptori, Tauleta i Mòbil).
+- **Marc Legal (`/politica-privacidad` i `/terminos`):** Textos jurídics complets adaptats a la normativa europea RGPD i LOPD-GDD.
 
 ---
 
-## 🎨 Com Utilitzar el Panell CMS Visual (`/admin`)
+## 🎨 Paleta & Disseny de Luxe
 
-1. Navega a [http://localhost:3000/admin](http://localhost:3000/admin).
-2. Introdueix la clau mestra:
-   - **Clau per defecte:** `vela2026admin` (pots canviar-la a `.env.local` amb la variable `ADMIN_SECRET_KEY`).
-3. Utilitza les pestanyes de l'esquerra per modificar textos, preus o imatges.
-4. Veuràs com la pantalla de la dreta s'actualitza instantàniament.
-5. Fes clic a **"Publicar a Producció"** per persistir els canvis.
-
----
-
-## 🗄️ Connexió amb Base de Dades Supabase (Opcional)
-
-Per defecte, el lloc funciona **sense cap configuració** guardant les dades al fitxer local `data/site-content.json`.
-
-Si vols que els canvis es guardin en un núvol centralitzat (ideal en desplegar a Vercel/Netlify), crea un projecte gratuït a [Supabase](https://supabase.com):
-
-1. Executa aquest codi SQL al teu projecte de Supabase (SQL Editor):
-```sql
-CREATE TABLE site_content (
-  id BIGSERIAL PRIMARY KEY,
-  content JSONB NOT NULL,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- Permetre lectura pública i escriptura amb clau de servei
-ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Lectura pública de contingut" 
-ON site_content FOR SELECT USING (true);
-
-CREATE POLICY "Escriptura permesa amb service role" 
-ON site_content FOR ALL USING (auth.role() = 'service_role');
-```
-
-2. Copia les claus al teu `.env.local` (i a les variables d'entorn de Vercel/Netlify):
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://teu-projecte.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=la-teva-service-role-key-secreta
-```
+- **Fons:** Pure Obsidian Black (`#000000`, `#060606`, `#0A0A0A`).
+- **Acentuació:** Ferrari Rosso Corsa (`#E10600`) — potent, precís, de màxima autoritat.
+- **Tipografia:** Titanium Apple White (`#FFFFFF`, `#F5F5F7`, `#E5E5EA`, `#86868B`).
+- **Avals:** Gold Satin (`#D4AF37`) per a ressenyes verificades de màxima confiança.
+- **Mòbil:** Menú en pantalla completa amb efecte de vidre translúcid ultra-suau (*blur* de 40px), rellotge en temps real de Manresa (CET) i botons tàctils optimitzats.
 
 ---
 
-## 📦 Com Pujar el Codi al teu GitHub
+## 🔑 Com Accedir i Utilitzar el CMS Visual (`/admin`)
 
-1. Inicialitza el repositori git a la carpeta:
-```bash
-cd C:\Users\garte\Documents\antigravity\vela-agency
-git init
-git add .
-git commit -m "feat: initial commit - VELA luxury agency platform"
-```
-
-2. Crea un nou repositori a [GitHub](https://github.com/new) anomenat per exemple `vela-agency`.
-
-3. Enllaça i puja el codi:
-```bash
-git remote add origin https://github.com/EL-TEU-USUARI/vela-agency.git
-git branch -M main
-git push -u origin main
-```
+1. Entra a: **`https://vela-web-yoaq.vercel.app/admin`** (o `http://localhost:3000/admin`).
+2. Clau mestra per defecte:
+   ```
+   vela2026admin
+   ```
+   *(Pots personalitzar-la definint la variable `ADMIN_SECRET_KEY` a Vercel o al teu fitxer `.env.local`)*.
+3. Des de la barra superior pots commutar la vista entre **Escriptori**, **Tauleta** i **Mòbil**.
+4. Modifica qualsevol text, logotip, preu o testimoni a l'esquerra: el llenç interactiu de la dreta s'actualitza en temps real al moment.
+5. Fes clic a **"Publicar a Producció"** per desar els canvis.
 
 ---
 
-## ⚡ Desplegament a Producció en 1 Clic (Vercel)
+## 🛡️ Ciberseguretat & Blindatge Legal
 
-1. Ves a [vercel.com](https://vercel.com) i inicia sessió amb el teu compte de GitHub.
-2. Fes clic a **"Add New Project"** i importa el repositori `vela-agency`.
-3. A la secció **Environment Variables**, afegeix:
-   - `ADMIN_SECRET_KEY`: La teva contrasenya privada per al CMS.
-   - (Si uses Supabase) `NEXT_PUBLIC_SUPABASE_URL` i `SUPABASE_SERVICE_ROLE_KEY`.
-4. Fes clic a **"Deploy"**.
-5. En menys de 60 segons tindràs la teva web activa amb certificat SSL automàtic!
+- **Content Security Policy (CSP)** i **HSTS** (Strict-Transport-Security a 2 anys).
+- Protecció contra atacs **XSS**, **Clickjacking (X-Frame-Options: DENY)** i **Sniffing**.
+- **Honeypot invisible** a formularis per bloquejar bots d'spam sense molestar els usuaris reals.
+- **Sanitització estricta** d'inputs a l'API i rate limiting per adreça IP.
+- **Banner interactiu RGPD** amb preferències granulars guardades en cookies segures (SameSite=Lax, Secure).
+
+---
+
+## 🚀 Repositori i Desplegament
+
+- **GitHub:** [https://github.com/cloudisdeaf/Vela-Web](https://github.com/cloudisdeaf/Vela-Web)
+- **Desplegament Vercel:** Cada `git push` a `main` activa automàticament la compilació i publicació a la CDN global de Vercel.
+- **Contacte:** `velamanresa@gmail.com` · Instagram: `@velamanresa` · Manresa, Barcelona.
